@@ -5362,3 +5362,30 @@ INSERT INTO CountryLanguage VALUES ('RUS','Belorussian','F',0.3);
 INSERT INTO CountryLanguage VALUES ('USA','Portuguese','F',0.2);
 COMMIT;
 
+-- TechEmployee table
+
+DROP TABLE IF EXISTS TechEmployee;
+CREATE TABLE TechEmployee (
+  EmployeeId CHAR(3) NOT NULL DEFAULT '',
+  EmployeeRole CHAR(30) NOT NULL DEFAULT '',
+  IsFullTime ENUM('T','F') NOT NULL DEFAULT 'T',
+  SeniorityStatus ENUM('Junior','Senior') NOT NULL DEFAULT 'Junior',
+  PRIMARY KEY  (EmployeeId)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Salary table
+
+DROP TABLE IF EXISTS Salary;
+CREATE TABLE Salary (
+  Period ENUM('Yearly', 'Monthly', 'Hourly') NOT NULL DEFAULT 'YEAR',
+  SalaryRange INT(11) NOT NULL,
+  PRIMARY KEY (Period)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ProgrammingLanguage table
+
+DROP TABLE IF EXISTS ProgrammingLanguage;
+CREATE TABLE ProgrammingLanguage (
+  Name CHAR(20) NOT NULL DEFAULT '',
+  PRIMARY KEY (Name)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
