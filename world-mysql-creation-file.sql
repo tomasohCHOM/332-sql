@@ -14,8 +14,8 @@ CREATE TABLE City (
   CountryCode CHAR(3) NOT NULL DEFAULT '',
   District CHAR(20) NOT NULL DEFAULT '',
   Population INT(11) DEFAULT NULL,
-  PRIMARY KEY (ID)
-  -- FOREIGN KEY (CountryCode) REFERENCES Country(Code) ON DELETE CASCADE
+  PRIMARY KEY (ID),
+  FOREIGN KEY (CountryCode) REFERENCES Country(Code) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 START TRANSACTION;
@@ -4372,7 +4372,8 @@ CREATE TABLE CountryLanguage (
   Language CHAR(30) NOT NULL DEFAULT '',
   IsOfficial ENUM('T','F') NOT NULL DEFAULT 'F',
   Percentage FLOAT(4,1) NOT NULL DEFAULT '0.0',
-  PRIMARY KEY  (CountryCode,Language)
+  PRIMARY KEY (CountryCode, Language),
+  FOREIGN KEY (CountryCode) REFERENCES Country(Code) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 START TRANSACTION;
@@ -5401,8 +5402,10 @@ INSERT INTO TechEmployee VALUES (20, 'ML Engineer', 'T', 'Senior');
 DROP TABLE IF EXISTS Salary;
 CREATE TABLE Salary (
   Period ENUM('Yearly', 'Monthly', 'Hourly') NOT NULL DEFAULT 'Yearly',
-  SalaryRange INT(11) NOT NULL,
-  PRIMARY KEY (Period, SalaryRange)
+  Salary INT(11) NOT NULL,
+  EmployeeId INT(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (Period, Salary),
+  FOREIGN KEY (EmployeeId) REFERENCES TechEmployee(EmployeeId) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ProgrammingLanguage table
@@ -5410,7 +5413,9 @@ CREATE TABLE Salary (
 DROP TABLE IF EXISTS ProgrammingLanguage;
 CREATE TABLE ProgrammingLanguage (
   Name CHAR(20) NOT NULL DEFAULT '',
-  PRIMARY KEY (Name)
+  EmployeeId INT(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (Name),
+  FOREIGN KEY (EmployeeId) REFERENCES TechEmployee(EmployeeId) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 START TRANSACTION;
