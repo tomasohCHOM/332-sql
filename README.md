@@ -3,7 +3,8 @@
 ## TO DO
 
 - [X] - Create the 3 additional tables (employee, salary, programming language)
-- [ ] - Define primary and foreign keys, and corrobate correct execution of SQL script
+- [X] - Define primary and foreign keys, and corrobate correct execution of SQL script
+- [ ] - Insert some data
 - [ ] - Create 20 queries
 - - [ ] - 5 queries structured with joins
 - - [ ] - 5 queries structured with subqueries
