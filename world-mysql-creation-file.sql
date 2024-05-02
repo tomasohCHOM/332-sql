@@ -14,7 +14,8 @@ CREATE TABLE City (
   CountryCode CHAR(3) NOT NULL DEFAULT '',
   District CHAR(20) NOT NULL DEFAULT '',
   Population INT(11) DEFAULT NULL,
-  PRIMARY KEY (ID)
+  PRIMARY KEY (ID),
+  FOREIGN KEY (CountryCode) REFERENCES Country(Code) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 START TRANSACTION;
@@ -4118,7 +4119,7 @@ CREATE TABLE Country (
   HeadOfState CHAR(60) DEFAULT NULL,
   Capital INT(11) DEFAULT NULL,
   Code2 CHAR(2) NOT NULL DEFAULT '',
-  PRIMARY KEY  (Code)
+  PRIMARY KEY (Code)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 START TRANSACTION;
@@ -5366,20 +5367,20 @@ COMMIT;
 
 DROP TABLE IF EXISTS TechEmployee;
 CREATE TABLE TechEmployee (
-  EmployeeId CHAR(3) NOT NULL DEFAULT '',
+  EmployeeId INT(11) NOT NULL auto_increment,
   EmployeeRole CHAR(30) NOT NULL DEFAULT '',
   IsFullTime ENUM('T','F') NOT NULL DEFAULT 'T',
   SeniorityStatus ENUM('Junior','Senior') NOT NULL DEFAULT 'Junior',
-  PRIMARY KEY  (EmployeeId)
+  PRIMARY KEY (EmployeeId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Salary table
 
 DROP TABLE IF EXISTS Salary;
 CREATE TABLE Salary (
-  Period ENUM('Yearly', 'Monthly', 'Hourly') NOT NULL DEFAULT 'YEAR',
+  Period ENUM('Yearly', 'Monthly', 'Hourly') NOT NULL DEFAULT 'Yearly',
   SalaryRange INT(11) NOT NULL,
-  PRIMARY KEY (Period)
+  PRIMARY KEY (Period, SalaryRange)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ProgrammingLanguage table
