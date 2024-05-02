@@ -14,8 +14,8 @@ CREATE TABLE City (
   CountryCode CHAR(3) NOT NULL DEFAULT '',
   District CHAR(20) NOT NULL DEFAULT '',
   Population INT(11) DEFAULT NULL,
-  PRIMARY KEY (ID),
-  FOREIGN KEY (CountryCode) REFERENCES Country(Code) ON DELETE CASCADE
+  PRIMARY KEY (ID)
+  -- FOREIGN KEY (CountryCode) REFERENCES Country(Code) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 START TRANSACTION;
@@ -5367,12 +5367,34 @@ COMMIT;
 
 DROP TABLE IF EXISTS TechEmployee;
 CREATE TABLE TechEmployee (
-  EmployeeId INT(11) NOT NULL auto_increment,
-  EmployeeRole CHAR(30) NOT NULL DEFAULT '',
-  IsFullTime ENUM('T','F') NOT NULL DEFAULT 'T',
-  SeniorityStatus ENUM('Junior','Senior') NOT NULL DEFAULT 'Junior',
+  EmployeeId INT(11) NOT NULL AUTO_INCREMENT,
+  EmployeeRole ENUM('Software Engineer', 'Data Scientist', 'ML Engineer', 'IT Support', 'Database Administrator') NOT NULL DEFAULT 'SOFTWARE ENGINEER',
+  IsFullTime ENUM('T', 'F') NOT NULL DEFAULT 'T',
+  SeniorityStatus ENUM('Junior', 'Senior') NOT NULL DEFAULT 'Junior',
   PRIMARY KEY (EmployeeId)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=INNODB DEFAULT CHARSET=UTF8;
+
+START TRANSACTION;
+INSERT INTO TechEmployee VALUES (1, 'Software Engineer', 'T', 'Junior');
+INSERT INTO TechEmployee VALUES (2, 'Data Scientist', 'T', 'Senior');
+INSERT INTO TechEmployee VALUES (3, 'Software Engineer', 'T', 'Junior');
+INSERT INTO TechEmployee VALUES (4, 'Data Scientist', 'T', 'Senior');
+INSERT INTO TechEmployee VALUES (5, 'Software Engineer', 'T', 'Senior');
+INSERT INTO TechEmployee VALUES (6, 'IT Support', 'T', 'Junior');
+INSERT INTO TechEmployee VALUES (7, 'Software Engineer', 'T', 'Senior');
+INSERT INTO TechEmployee VALUES (8, 'IT Support', 'T', 'Senior');
+INSERT INTO TechEmployee VALUES (9, 'Software Engineer', 'T', 'Senior');
+INSERT INTO TechEmployee VALUES (10, 'Data Scientist', 'T', 'Junior');
+INSERT INTO TechEmployee VALUES (11, 'Database Administrator', 'T', 'Junior');
+INSERT INTO TechEmployee VALUES (12, 'Software Engineer', 'T', 'Senior');
+INSERT INTO TechEmployee VALUES (13, 'Database Administrator', 'T', 'Senior');
+INSERT INTO TechEmployee VALUES (14, 'ML Engineer', 'T', 'Junior');
+INSERT INTO TechEmployee VALUES (15, 'Software Engineer', 'T', 'Junior');
+INSERT INTO TechEmployee VALUES (16, 'Data Scientist', 'T', 'Senior');
+INSERT INTO TechEmployee VALUES (17, 'IT Support', 'T', 'Senior');
+INSERT INTO TechEmployee VALUES (18, 'Software Engineer', 'T', 'Junior');
+INSERT INTO TechEmployee VALUES (19, 'ML Engineer', 'T', 'Junior');
+INSERT INTO TechEmployee VALUES (20, 'ML Engineer', 'T', 'Senior');
 
 -- Salary table
 
@@ -5390,3 +5412,16 @@ CREATE TABLE ProgrammingLanguage (
   Name CHAR(20) NOT NULL DEFAULT '',
   PRIMARY KEY (Name)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+START TRANSACTION;
+INSERT INTO ProgrammingLanguage VALUES ('JavaScript');
+INSERT INTO ProgrammingLanguage VALUES ('Python');
+INSERT INTO ProgrammingLanguage VALUES ('C/C++');
+INSERT INTO ProgrammingLanguage VALUES ('MySQL');
+INSERT INTO ProgrammingLanguage VALUES ('Ruby');
+INSERT INTO ProgrammingLanguage VALUES ('PHP');
+INSERT INTO ProgrammingLanguage VALUES ('Go');
+INSERT INTO ProgrammingLanguage VALUES ('HTML/CSS');
+INSERT INTO ProgrammingLanguage VALUES ('Rust');
+INSERT INTO ProgrammingLanguage VALUES ('Java');
+
