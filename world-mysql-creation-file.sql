@@ -5387,56 +5387,153 @@ CREATE TABLE TechEmployee (
 ) ENGINE=INNODB DEFAULT CHARSET=UTF8;
 
 START TRANSACTION;
-INSERT INTO TechEmployee VALUES (1, 'Software Engineer', 'T', 'Junior', 1);
--- INSERT INTO TechEmployee VALUES (2, 'Data Scientist', 'T', 'Senior');
--- INSERT INTO TechEmployee VALUES (3, 'Software Engineer', 'T', 'Junior');
--- INSERT INTO TechEmployee VALUES (4, 'Data Scientist', 'T', 'Senior');
--- INSERT INTO TechEmployee VALUES (5, 'Software Engineer', 'T', 'Senior');
--- INSERT INTO TechEmployee VALUES (6, 'IT Support', 'T', 'Junior');
--- INSERT INTO TechEmployee VALUES (7, 'Software Engineer', 'T', 'Senior');
--- INSERT INTO TechEmployee VALUES (8, 'IT Support', 'T', 'Senior');
--- INSERT INTO TechEmployee VALUES (9, 'Software Engineer', 'T', 'Senior');
--- INSERT INTO TechEmployee VALUES (10, 'Data Scientist', 'T', 'Junior');
--- INSERT INTO TechEmployee VALUES (11, 'Database Administrator', 'T', 'Junior');
--- INSERT INTO TechEmployee VALUES (12, 'Software Engineer', 'T', 'Senior');
--- INSERT INTO TechEmployee VALUES (13, 'Database Administrator', 'T', 'Senior');
--- INSERT INTO TechEmployee VALUES (14, 'ML Engineer', 'T', 'Junior');
--- INSERT INTO TechEmployee VALUES (15, 'Software Engineer', 'T', 'Junior');
--- INSERT INTO TechEmployee VALUES (16, 'Data Scientist', 'T', 'Senior');
--- INSERT INTO TechEmployee VALUES (17, 'IT Support', 'T', 'Senior');
--- INSERT INTO TechEmployee VALUES (18, 'Software Engineer', 'T', 'Junior');
--- INSERT INTO TechEmployee VALUES (19, 'ML Engineer', 'T', 'Junior');
--- INSERT INTO TechEmployee VALUES (20, 'ML Engineer', 'T', 'Senior');
+INSERT INTO TechEmployee VALUES (1, 'Software Engineer', 'T', 'Junior', 3793);
+INSERT INTO TechEmployee VALUES (2, 'Data Scientist', 'T', 'Senior', 3805);
+INSERT INTO TechEmployee VALUES (3, 'Software Engineer', 'T', 'Junior', 3827);
+INSERT INTO TechEmployee VALUES (4, 'Data Scientist', 'T', 'Senior', 3793);
+INSERT INTO TechEmployee VALUES (5, 'Software Engineer', 'T', 'Senior', 2331);
+INSERT INTO TechEmployee VALUES (6, 'IT Support', 'T', 'Junior', 1025);
+INSERT INTO TechEmployee VALUES (7, 'Software Engineer', 'T', 'Senior', 3805);
+INSERT INTO TechEmployee VALUES (8, 'IT Support', 'T', 'Senior', 1025);
+INSERT INTO TechEmployee VALUES (9, 'Software Engineer', 'T', 'Senior', 712);
+INSERT INTO TechEmployee VALUES (10, 'Data Scientist', 'T', 'Junior', 3836);
+INSERT INTO TechEmployee VALUES (11, 'Database Administrator', 'T', 'Junior', 69);
+INSERT INTO TechEmployee VALUES (12, 'Software Engineer', 'T', 'Senior', 3805);
+INSERT INTO TechEmployee VALUES (13, 'Database Administrator', 'T', 'Senior', 2974);
+INSERT INTO TechEmployee VALUES (14, 'ML Engineer', 'T', 'Junior', 2331);
+INSERT INTO TechEmployee VALUES (15, 'Software Engineer', 'T', 'Junior', 1025);
+INSERT INTO TechEmployee VALUES (16, 'Data Scientist', 'T', 'Senior', 3805);
+INSERT INTO TechEmployee VALUES (17, 'IT Support', 'T', 'Senior', 207);
+INSERT INTO TechEmployee VALUES (18, 'Software Engineer', 'T', 'Junior', 2974);
+INSERT INTO TechEmployee VALUES (19, 'ML Engineer', 'T', 'Junior', 1532);
+INSERT INTO TechEmployee VALUES (20, 'ML Engineer', 'T', 'Senior', 3793);
+COMMIT;
 
 -- Salary table
 
 CREATE TABLE Salary (
-  Period ENUM('Yearly', 'Monthly', 'Hourly') NOT NULL DEFAULT 'Yearly',
   Salary INT(11) NOT NULL,
+  Period ENUM('Yearly', 'Monthly', 'Hourly') NOT NULL DEFAULT 'Yearly',
   EmployeeId INT(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (Period, Salary),
+  PRIMARY KEY (EmployeeId, Period),
   FOREIGN KEY (EmployeeId) REFERENCES TechEmployee(EmployeeId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+START TRANSACTION;
+INSERT INTO Salary VALUES (100000, 'Yearly', 1);
+INSERT INTO Salary VALUES (100001, 'Monthly', 2);
+INSERT INTO Salary VALUES (100002, 'Yearly', 3);
+INSERT INTO Salary VALUES (100003, 'Yearly', 4);
+INSERT INTO Salary VALUES (100004, 'Monthly', 5);
+INSERT INTO Salary VALUES (100005, 'Monthly', 6);
+INSERT INTO Salary VALUES (100006, 'Yearly', 7);
+INSERT INTO Salary VALUES (100007, 'Monthly', 8);
+INSERT INTO Salary VALUES (100008, 'Yearly', 9);
+INSERT INTO Salary VALUES (100009, 'Monthly', 10);
+INSERT INTO Salary VALUES (100010, 'Yearly', 11);
+INSERT INTO Salary VALUES (100020, 'Monthly', 12);
+INSERT INTO Salary VALUES (100030, 'Yearly', 13);
+INSERT INTO Salary VALUES (100050, 'Yearly', 14);
+INSERT INTO Salary VALUES (100060, 'Monthly', 15);
+INSERT INTO Salary VALUES (100070, 'Yearly', 16);
+INSERT INTO Salary VALUES (100080, 'Yearly', 17);
+INSERT INTO Salary VALUES (100090, 'Monthly', 18);
+INSERT INTO Salary VALUES (100100, 'Yearly', 19);
+INSERT INTO Salary VALUES (100200, 'Yearly', 20);
+COMMIT;
 
 -- ProgrammingLanguage table
 
 CREATE TABLE ProgrammingLanguage (
   Name CHAR(20) NOT NULL DEFAULT '',
   EmployeeId INT(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (Name),
+  PRIMARY KEY (Name, EmployeeId),
   FOREIGN KEY (EmployeeId) REFERENCES TechEmployee(EmployeeId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 START TRANSACTION;
 INSERT INTO ProgrammingLanguage VALUES ('JavaScript', 1);
-INSERT INTO ProgrammingLanguage VALUES ('Python', 1);
-INSERT INTO ProgrammingLanguage VALUES ('C/C++', 1);
-INSERT INTO ProgrammingLanguage VALUES ('MySQL', 1);
-INSERT INTO ProgrammingLanguage VALUES ('Ruby', 1);
-INSERT INTO ProgrammingLanguage VALUES ('PHP', 1);
-INSERT INTO ProgrammingLanguage VALUES ('Go', 1);
 INSERT INTO ProgrammingLanguage VALUES ('HTML/CSS', 1);
-INSERT INTO ProgrammingLanguage VALUES ('Rust', 1);
-INSERT INTO ProgrammingLanguage VALUES ('Java', 1);
+INSERT INTO ProgrammingLanguage VALUES ('Python', 2);
+INSERT INTO ProgrammingLanguage VALUES ('C/C++', 2);
+INSERT INTO ProgrammingLanguage VALUES ('Java', 3);
+INSERT INTO ProgrammingLanguage VALUES ('C/C++', 3);
+INSERT INTO ProgrammingLanguage VALUES ('Python', 4);
+INSERT INTO ProgrammingLanguage VALUES ('C/C++', 5);
+INSERT INTO ProgrammingLanguage VALUES ('Jva', 5);
+INSERT INTO ProgrammingLanguage VALUES ('JavaScript', 5);
+INSERT INTO ProgrammingLanguage VALUES ('None', 6);
+INSERT INTO ProgrammingLanguage VALUES ('Ruby', 7);
+INSERT INTO ProgrammingLanguage VALUES ('Python', 7);
+INSERT INTO ProgrammingLanguage VALUES ('None', 8);
+INSERT INTO ProgrammingLanguage VALUES ('Rust', 9);
+INSERT INTO ProgrammingLanguage VALUES ('C/C++', 9);
+INSERT INTO ProgrammingLanguage VALUES ('Python', 10);
+INSERT INTO ProgrammingLanguage VALUES ('C/C++', 10);
+INSERT INTO ProgrammingLanguage VALUES ('MySQL', 11);
+INSERT INTO ProgrammingLanguage VALUES ('JavaScript', 12);
+INSERT INTO ProgrammingLanguage VALUES ('HTML/CSS', 12);
+INSERT INTO ProgrammingLanguage VALUES ('MySQL', 12);
+INSERT INTO ProgrammingLanguage VALUES ('MySQL', 13);
+INSERT INTO ProgrammingLanguage VALUES ('Python', 14);
+INSERT INTO ProgrammingLanguage VALUES ('Java', 15);
+INSERT INTO ProgrammingLanguage VALUES ('Python', 15);
+INSERT INTO ProgrammingLanguage VALUES ('PHP', 15);
+INSERT INTO ProgrammingLanguage VALUES ('Go', 16);
+INSERT INTO ProgrammingLanguage VALUES ('None', 17);
+INSERT INTO ProgrammingLanguage VALUES ('JavaScript', 18);
+INSERT INTO ProgrammingLanguage VALUES ('Go', 18);
+INSERT INTO ProgrammingLanguage VALUES ('Rust', 18);
+INSERT INTO ProgrammingLanguage VALUES ('Python', 19);
+INSERT INTO ProgrammingLanguage VALUES ('Go', 19);
+INSERT INTO ProgrammingLanguage VALUES ('Python', 20);
+COMMIT;
 
 -- TODO: Create SQL queries!
+
+-- SQL Query #1 - Junior to Senior and Salary Increase (Join Update Query)
+UPDATE TechEmployee JOIN Salary ON (TechEmployee.EmployeeId = Salary.EmployeeId)
+SET TechEmployee.SeniorityStatus = 'Senior', Salary.Salary = Salary.Salary + 20000
+WHERE TechEmployee.EmployeeId = 1;
+
+-- SQL Query #2 - Select all Junior employees with a Salary > 100000
+SELECT * FROM TechEmployee JOIN Salary ON (TechEmployee.EmployeeId = Salary.EmployeeId)
+WHERE TechEmployee.SeniorityStatus = 'Junior' AND Salary.Salary > 100000;
+
+-- SQL Query #3 - Select all Senior employees that use JavaScript
+SELECT * FROM TechEmployee JOIN ProgrammingLanguage ON (TechEmployee.EmployeeId = ProgrammingLanguage.EmployeeId)
+WHERE TechEmployee.SeniorityStatus = 'Senior' AND ProgrammingLanguage.Name = 'JavaScript'
+
+-- SQL Query #4
+
+-- SQL Query #5
+
+-- SQL Query #6
+
+-- SQL Query #7
+
+-- SQL Query #8
+
+-- SQL Query #9
+
+-- SQL Query #10
+
+-- SQL Query #11
+
+-- SQL Query #12
+
+-- SQL Query #13
+
+-- SQL Query #14
+
+-- SQL Query #15
+
+-- SQL Query #16
+
+-- SQL Query #17
+
+-- SQL Query #18
+
+-- SQL Query #19
+
+-- SQL Query #20
