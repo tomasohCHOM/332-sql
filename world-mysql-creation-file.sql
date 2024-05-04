@@ -5415,7 +5415,7 @@ CREATE TABLE Salary (
   Salary INT(11) NOT NULL,
   Period ENUM('Yearly', 'Monthly', 'Hourly') NOT NULL DEFAULT 'Yearly',
   EmployeeId INT(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (EmployeeId, Period),
+  PRIMARY KEY (EmployeeId),
   FOREIGN KEY (EmployeeId) REFERENCES TechEmployee(EmployeeId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -5523,30 +5523,74 @@ WHERE TechEmployee.EmployeeRole = 'Data Scientist';
 SELECT *, (SELECT GROUP_CONCAT(Name SEPARATOR ', ') FROM ProgrammingLanguage WHERE ProgrammingLanguage.EmployeeId = TechEmployee.EmployeeId) FROM TechEmployee
 WHERE TechEmployee.SeniorityStatus = 'Junior';
 
--- SQL Query #9 - Select all Senior 
+-- SQL Query #9 - Select all EmployeeIds and their Country Continents (Subquery)
+SELECT EmployeeId,
+(SELECT Country.Continent FROM Country JOIN City ON (City.CountryCode = Country.Code) 
+ WHERE TechEmployee.CityId = City.ID)
+FROM TechEmployee;
 
 -- SQL Query #10 - Select the Employee ID and City Population of IT Support Employees (Subquery)
 SELECT EmployeeId, (SELECT Population FROM City WHERE City.ID = TechEmployee.CityId) FROM TechEmployee
 WHERE TechEmployee.EmployeeRole = 'IT Support';
 
 -- SQL Query #11 - Update Tech Employee with EmployeeId equal to 5 to live in San Francisco (ID = 3805)
-UPDATE TechEmployee SET CityId = 3805 WHERE TechEmployee.EmployeeId = 5;
-SELECT * FROM TechEmployee WHERE TechEmployee.EmployeeId = 5;
+UPDATE TechEmployee 
+SET CityId = 3805 
+WHERE TechEmployee.EmployeeId = 5;
 
--- SQL Query #12
+-- SQL Query #12 - Select the City with Lowest Salart
+SELECT City.Name AS CityName, AVG(Salary.Salary) AS AverageSalary
+FROM City
+JOIN TechEmployee ON City.ID = TechEmployee.CityId
+JOIN Salary ON TechEmployee.EmployeeId = Salary.EmployeeId
+GROUP BY City.ID, City.Name
+ORDER BY AverageSalary ASC
+LIMIT 1;
 
--- SQL Query #13
+-- SQL Query #13 - Select the City with Highest Salary
+SELECT City.Name AS CityName, AVG(Salary.Salary) AS AverageSalary
+FROM City
+JOIN TechEmployee ON City.ID = TechEmployee.CityId
+JOIN Salary ON TechEmployee.EmployeeId = Salary.EmployeeId
+GROUP BY City.ID, City.Name
+ORDER BY AverageSalary DESC
+LIMIT 1;
 
--- SQL Query #14
+-- SQL Query #14 - Select the Programming Language with Highest Salary
+SELECT ProgrammingLanguage.Name, AVG(Salary.Salary) AS AverageSalary
+FROM ProgrammingLanguage
+JOIN TechEmployee ON ProgrammingLanguage.EmployeeId = TechEmployee.EmployeeId
+JOIN Salary ON TechEmployee.EmployeeId = Salary.EmployeeId
+GROUP BY ProgrammingLanguage.Name
+ORDER BY AverageSalary DESC
+LIMIT 1;
 
--- SQL Query #15
+-- SQL Query #15 - Update Employee with ID = 11 to Monthly Salary
+UPDATE TechEmployee JOIN Salary ON (TechEmployee.EmployeeId = Salary.EmployeeId)
+SET Salary.Period = 'Monthly', Salary.Salary = FLOOR(Salary.Salary / 12)
+WHERE TechEmployee.EmployeeId = 11;
 
--- SQL Query #16
+-- SQL Query #16 - Update Employee with ID = 13 to move to Montana
+UPDATE TechEmployee
+SET CityId = 4051
+WHERE EmployeeId = 13;
 
--- SQL Query #17
+-- SQL Query #17 - Update Employee with ID = 7 to work part-time (also decrease their salary)
+UPDATE TechEmployee JOIN Salary ON (TechEmployee.EmployeeId = Salary.EmployeeId)
+SET isFullTime = 'F', Salary = FLOOR(Salary / 2)
+WHERE TechEmployee.EmployeeId = 7;
 
--- SQL Query #18
+-- SQL Query #18 - Update Employee with ID = 11 to Hourly Salary (yet another salary change)
+UPDATE TechEmployee JOIN Salary ON (TechEmployee.EmployeeId = Salary.EmployeeId)
+SET Salary.Period = 'Hourly', Salary.Salary = FLOOR(Salary / 720)
+WHERE TechEmployee.EmployeeId = 11;
 
--- SQL Query #19
+-- SQL Query #19 - Update Role "Software Engineer" to "ML Engineer" with Salary increase of 50000
+UPDATE TechEmployee JOIN Salary ON (TechEmployee.Employeeid = Salary.EmployeeId)
+SET TechEmployee.EmployeeRole = 'ML Engineer', Salary.Salary = Salary + 50000
+WHERE TechEmployee.EmployeeId = 7;
 
--- SQL Query #20
+-- SQL Query #20 - Delete Employee with ID (they got laid off)
+DELETE FROM TechEmployee WHERE TechEmployee.EmployeeID = 20;
+
+-- Finalized SQL Queries
