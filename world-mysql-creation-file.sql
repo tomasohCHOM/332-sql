@@ -5423,9 +5423,9 @@ START TRANSACTION;
 INSERT INTO Salary VALUES (100000, 'Yearly', 1);
 INSERT INTO Salary VALUES (100001, 'Monthly', 2);
 INSERT INTO Salary VALUES (100002, 'Yearly', 3);
-INSERT INTO Salary VALUES (100003, 'Yearly', 4);
+INSERT INTO Salary VALUES (100003, 'Monthly', 4);
 INSERT INTO Salary VALUES (100004, 'Monthly', 5);
-INSERT INTO Salary VALUES (100005, 'Monthly', 6);
+INSERT INTO Salary VALUES (100005, 'Yearly', 6);
 INSERT INTO Salary VALUES (100006, 'Yearly', 7);
 INSERT INTO Salary VALUES (100007, 'Monthly', 8);
 INSERT INTO Salary VALUES (100008, 'Yearly', 9);
@@ -5489,36 +5489,49 @@ INSERT INTO ProgrammingLanguage VALUES ('Go', 19);
 INSERT INTO ProgrammingLanguage VALUES ('Python', 20);
 COMMIT;
 
--- TODO: Create SQL queries!
 
--- SQL Query #1 - Junior to Senior and Salary Increase (Join Update Query)
+-- SQL Query #1 - Update Junior to Senior and Salary Increase (Join Update Query)
 UPDATE TechEmployee JOIN Salary ON (TechEmployee.EmployeeId = Salary.EmployeeId)
 SET TechEmployee.SeniorityStatus = 'Senior', Salary.Salary = Salary.Salary + 20000
 WHERE TechEmployee.EmployeeId = 1;
 
--- SQL Query #2 - Select all Junior employees with a Salary > 100000
+-- SQL Query #2 - Select all Junior employees with a Salary > 100000 (Join Select Query)
 SELECT * FROM TechEmployee JOIN Salary ON (TechEmployee.EmployeeId = Salary.EmployeeId)
 WHERE TechEmployee.SeniorityStatus = 'Junior' AND Salary.Salary > 100000;
 
--- SQL Query #3 - Select all Senior employees that use JavaScript
+-- SQL Query #3 - Select all Senior employees that use JavaScript (Join Select Query)
 SELECT * FROM TechEmployee JOIN ProgrammingLanguage ON (TechEmployee.EmployeeId = ProgrammingLanguage.EmployeeId)
-WHERE TechEmployee.SeniorityStatus = 'Senior' AND ProgrammingLanguage.Name = 'JavaScript'
+WHERE TechEmployee.SeniorityStatus = 'Senior' AND ProgrammingLanguage.Name = 'JavaScript';
 
--- SQL Query #4
+-- SQL Query #4 - Select all yearly employee salaries from India (Join Select Query)
+SELECT Salary.Salary FROM TechEmployee JOIN City ON (TechEmployee.CityId = City.ID) JOIN Salary ON (TechEmployee.EmployeeId = Salary.EmployeeId)
+WHERE City.CountryCode = "IND" AND Salary.Period = 'Yearly';
 
--- SQL Query #5
+-- SQL Query #5 - Select all yearly employee salaries from USA (Join Select Query)
+SELECT Salary.Salary FROM TechEmployee JOIN City ON (TechEmployee.CityId = City.ID) JOIN Salary ON (TechEmployee.EmployeeId = Salary.EmployeeId)
+WHERE City.CountryCode = "USA" AND Salary.Period = 'Yearly';
 
--- SQL Query #6
+-- SQL Query #6 - Select all Software Engineers and the city name that they live in (Subquery)
+SELECT *, (SELECT Name FROM City WHERE TechEmployee.CityId = City.ID) FROM TechEmployee
+WHERE TechEmployee.EmployeeRole = 'Software Engineer';
 
--- SQL Query #7
+-- SQL Query #7 - Select all Data Scientists and their salaries (Subquery)
+SELECT *, (SELECT Salary from Salary WHERE Salary.EmployeeId = TechEmployee.EmployeeId) FROM TechEmployee
+WHERE TechEmployee.EmployeeRole = 'Data Scientist';
 
--- SQL Query #8
+-- SQL Query #8 - Select all Junior Software Engineers and the Programming Languages that they use (Subquery)
+SELECT *, (SELECT GROUP_CONCAT(Name SEPARATOR ', ') FROM ProgrammingLanguage WHERE ProgrammingLanguage.EmployeeId = TechEmployee.EmployeeId) FROM TechEmployee
+WHERE TechEmployee.SeniorityStatus = 'Junior';
 
--- SQL Query #9
+-- SQL Query #9 - Select all Senior 
 
--- SQL Query #10
+-- SQL Query #10 - Select the Employee ID and City Population of IT Support Employees (Subquery)
+SELECT EmployeeId, (SELECT Population FROM City WHERE City.ID = TechEmployee.CityId) FROM TechEmployee
+WHERE TechEmployee.EmployeeRole = 'IT Support';
 
--- SQL Query #11
+-- SQL Query #11 - Update Tech Employee with EmployeeId equal to 5 to live in San Francisco (ID = 3805)
+UPDATE TechEmployee SET CityId = 3805 WHERE TechEmployee.EmployeeId = 5;
+SELECT * FROM TechEmployee WHERE TechEmployee.EmployeeId = 5;
 
 -- SQL Query #12
 

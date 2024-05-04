@@ -6,6 +6,6 @@
 - [X] - Define primary and foreign keys, and corrobate correct execution of SQL script
 - [X] - Insert some data (Only alter Salary rows)
 - [ ] - Create 20 queries
-- - [ ] - 5 queries structured with joins
+- - [X] - 5 queries structured with joins
 - - [ ] - 5 queries structured with subqueries
 - - [ ] - 10 remaining queries
