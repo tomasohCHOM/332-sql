@@ -5420,26 +5420,26 @@ CREATE TABLE Salary (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 START TRANSACTION;
-INSERT INTO Salary VALUES (100000, 'Yearly', 1);
-INSERT INTO Salary VALUES (100001, 'Monthly', 2);
-INSERT INTO Salary VALUES (100002, 'Yearly', 3);
-INSERT INTO Salary VALUES (100003, 'Monthly', 4);
-INSERT INTO Salary VALUES (100004, 'Monthly', 5);
-INSERT INTO Salary VALUES (100005, 'Yearly', 6);
-INSERT INTO Salary VALUES (100006, 'Yearly', 7);
-INSERT INTO Salary VALUES (100007, 'Monthly', 8);
-INSERT INTO Salary VALUES (100008, 'Yearly', 9);
-INSERT INTO Salary VALUES (100009, 'Monthly', 10);
-INSERT INTO Salary VALUES (100010, 'Yearly', 11);
-INSERT INTO Salary VALUES (100020, 'Monthly', 12);
-INSERT INTO Salary VALUES (100030, 'Yearly', 13);
-INSERT INTO Salary VALUES (100050, 'Yearly', 14);
-INSERT INTO Salary VALUES (100060, 'Monthly', 15);
-INSERT INTO Salary VALUES (100070, 'Yearly', 16);
-INSERT INTO Salary VALUES (100080, 'Yearly', 17);
-INSERT INTO Salary VALUES (100090, 'Monthly', 18);
-INSERT INTO Salary VALUES (100100, 'Yearly', 19);
-INSERT INTO Salary VALUES (100200, 'Yearly', 20);
+INSERT INTO Salary VALUES (120000, 'Yearly', 1);
+INSERT INTO Salary VALUES (15400, 'Monthly', 2);
+INSERT INTO Salary VALUES (103802, 'Yearly', 3);
+INSERT INTO Salary VALUES (10004, 'Monthly', 4);
+INSERT INTO Salary VALUES (9875, 'Monthly', 5);
+INSERT INTO Salary VALUES (25450, 'Yearly', 6);
+INSERT INTO Salary VALUES (172867, 'Yearly', 7);
+INSERT INTO Salary VALUES (1257, 'Monthly', 8);
+INSERT INTO Salary VALUES (72674, 'Yearly', 9);
+INSERT INTO Salary VALUES (8656, 'Monthly', 10);
+INSERT INTO Salary VALUES (67564, 'Yearly', 11);
+INSERT INTO Salary VALUES (8731, 'Monthly', 12);
+INSERT INTO Salary VALUES (92304, 'Yearly', 13);
+INSERT INTO Salary VALUES (120050, 'Yearly', 14);
+INSERT INTO Salary VALUES (2170, 'Monthly', 15);
+INSERT INTO Salary VALUES (114053, 'Yearly', 16);
+INSERT INTO Salary VALUES (78052, 'Yearly', 17);
+INSERT INTO Salary VALUES (7686, 'Monthly', 18);
+INSERT INTO Salary VALUES (93232, 'Yearly', 19);
+INSERT INTO Salary VALUES (143210, 'Yearly', 20);
 COMMIT;
 
 -- ProgrammingLanguage table
