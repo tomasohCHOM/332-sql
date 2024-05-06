@@ -5543,6 +5543,7 @@ SELECT City.Name AS CityName, AVG(Salary.Salary) AS AverageSalary
 FROM City
 JOIN TechEmployee ON City.ID = TechEmployee.CityId
 JOIN Salary ON TechEmployee.EmployeeId = Salary.EmployeeId
+WHERE Salary.Period = 'Yearly'
 GROUP BY City.ID, City.Name
 ORDER BY AverageSalary ASC
 LIMIT 1;
@@ -5552,6 +5553,7 @@ SELECT City.Name AS CityName, AVG(Salary.Salary) AS AverageSalary
 FROM City
 JOIN TechEmployee ON City.ID = TechEmployee.CityId
 JOIN Salary ON TechEmployee.EmployeeId = Salary.EmployeeId
+WHERE Salary.Period = 'Yearly'
 GROUP BY City.ID, City.Name
 ORDER BY AverageSalary DESC
 LIMIT 1;
@@ -5561,6 +5563,7 @@ SELECT ProgrammingLanguage.Name, AVG(Salary.Salary) AS AverageSalary
 FROM ProgrammingLanguage
 JOIN TechEmployee ON ProgrammingLanguage.EmployeeId = TechEmployee.EmployeeId
 JOIN Salary ON TechEmployee.EmployeeId = Salary.EmployeeId
+WHERE Salary.Period = 'Yearly'
 GROUP BY ProgrammingLanguage.Name
 ORDER BY AverageSalary DESC
 LIMIT 1;
